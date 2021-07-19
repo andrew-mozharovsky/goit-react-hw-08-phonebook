@@ -68,8 +68,8 @@ class RegisterView extends Component {
   }
 }
 
-const mapDispathToProps = {
+const mapDispatchToProps = {
   onRegister: register,
 };
 
-export default connect(null, mapDispathToProps)(RegisterView);
+export default connect(null, mapDispatchToProps)(RegisterView);

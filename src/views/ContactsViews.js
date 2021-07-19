@@ -20,7 +20,9 @@ const ContactsViews = () => {
         classNames={{ ...styles }}
         unmountOnExit
       >
-        <h1 className={styles.title}>Phonebook</h1>
+        <h1 ref={nodeRef} className={styles.title}>
+          Phonebook
+        </h1>
       </CSSTransition>
 
       <Form></Form>

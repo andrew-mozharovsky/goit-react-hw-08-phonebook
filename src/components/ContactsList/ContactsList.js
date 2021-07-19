@@ -30,10 +30,10 @@ class ContactsList extends Component {
             <CSSTransition
               nodeRef={nodeRef}
               key={id}
-              timeout={250}
+              timeout={500}
               classNames={styles}
             >
-              <li key={id} className={styles.item}>
+              <li key={id} className={styles.item} ref={nodeRef}>
                 <span className={styles.item_name}>{name}</span>
                 <span className={styles.item_number}>{number}</span>
 
