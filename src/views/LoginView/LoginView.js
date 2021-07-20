@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
-import { form, label } from './LoginView.module.scss';
+import {
+  form,
+  label,
+  loginContainer,
+  inputs,
+  button,
+  title,
+} from './LoginView.module.scss';
 import { connect } from 'react-redux';
 import { logIn } from '../../redux/auth';
 
@@ -24,15 +31,16 @@ class LoginView extends Component {
 
   render() {
     const { email, password } = this.state;
-
+    const classes = `container ${loginContainer}`;
     return (
-      <div>
-        <h1>Страница логина</h1>
+      <div className={classes}>
+        <h1 className={title}>Страница логина</h1>
 
         <form onSubmit={this.handleSubmit} className={form} autoComplete="off">
           <label className={label}>
             Почта
             <input
+              className={inputs}
               type="email"
               name="email"
               value={email}
@@ -43,6 +51,7 @@ class LoginView extends Component {
           <label className={label}>
             Пароль
             <input
+              className={inputs}
               type="password"
               name="password"
               value={password}
@@ -50,7 +59,9 @@ class LoginView extends Component {
             />
           </label>
 
-          <button type="submit">Войти</button>
+          <button className={button} type="submit">
+            Войти
+          </button>
         </form>
       </div>
     );

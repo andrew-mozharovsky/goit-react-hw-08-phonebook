@@ -1,20 +1,15 @@
 import { combineReducers } from 'redux';
 import { createReducer } from '@reduxjs/toolkit';
 import {
-  registerRequest,
   registerSuccess,
   registerError,
-  loginRequest,
   loginSuccess,
   loginError,
-  logoutRequest,
   logoutSuccess,
   logoutError,
-  getCurrentUserRequest,
   getCurrentUserSuccess,
   getCurrentUserError,
 } from './auth-actions';
-import { register } from './auth-operations';
 
 const initialUserState = { name: null, email: null };
 
@@ -40,7 +35,18 @@ const error = createReducer(null, {
   [getCurrentUserError]: serError,
 });
 
+const isLoadIn = createReducer(false, {
+  [registerSuccess]: () => true,
+  [loginSuccess]: () => true,
+  [getCurrentUserSuccess]: () => true,
+  [registerError]: () => false,
+  [loginError]: () => false,
+  [getCurrentUserError]: () => false,
+  [logoutSuccess]: () => false,
+});
+
 export default combineReducers({
+  isLoadIn,
   user,
   token,
   error,

@@ -19,7 +19,6 @@ class ContactsList extends Component {
   }
 
   render() {
-    const nodeRef = React.createRef(null);
     const { contacts, deleteContact, isLoading, isError } = this.props;
     return (
       <>
@@ -27,13 +26,8 @@ class ContactsList extends Component {
         {isError && <Error />}
         <TransitionGroup component="ul" className={styles.list}>
           {contacts.map(({ name, id, number }) => (
-            <CSSTransition
-              nodeRef={nodeRef}
-              key={id}
-              timeout={500}
-              classNames={styles}
-            >
-              <li key={id} className={styles.item} ref={nodeRef}>
+            <CSSTransition key={id} timeout={500} classNames={styles}>
+              <li key={id} className={styles.item}>
                 <span className={styles.item_name}>{name}</span>
                 <span className={styles.item_number}>{number}</span>
 

@@ -1,15 +1,17 @@
 import React from 'react';
 import { CSSTransition } from 'react-transition-group';
+import { getContacts } from '../../redux/phonebook';
+import { connect } from 'react-redux';
 
-import Form from '../components/Form';
-import ContactsList from '../components/ContactsList';
-import Filter from '../components/Filter';
+import Form from '../../components/Form';
+import ContactsList from '../../components/ContactsList';
+import Filter from '../../components/Filter';
 
-import styles from '../App.module.scss';
+import styles from './ContactsViews.module.scss';
 
 const nodeRef = React.createRef(null);
 
-const ContactsViews = () => {
+const ContactsViews = ({ contacts }) => {
   return (
     <section className={styles.container}>
       <CSSTransition
@@ -28,11 +30,16 @@ const ContactsViews = () => {
       <Form></Form>
       <div className={styles.contacts_container}>
         <h2 className={styles.contact_title}>Contacts</h2>
-        <Filter />
+        {contacts.length > 1 && <Filter />}
+
         <ContactsList />
       </div>
     </section>
   );
 };
 
-export default ContactsViews;
+const mapStateToProps = state => ({
+  contacts: getContacts(state),
+});
+
+export default connect(mapStateToProps)(ContactsViews);

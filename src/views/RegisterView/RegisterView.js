@@ -2,7 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { register } from '../../redux/auth';
 
-import { form, label } from './RegisterView.module.scss';
+import {
+  form,
+  label,
+  registerContainer,
+  title,
+  button,
+  inputs,
+} from './RegisterView.module.scss';
 
 class RegisterView extends Component {
   state = {
@@ -24,16 +31,18 @@ class RegisterView extends Component {
   };
 
   render() {
+    const classes = `container ${registerContainer}`;
     const { name, email, password } = this.state;
 
     return (
-      <div>
-        <h1>Страница регистрации</h1>
+      <div className={classes}>
+        <h1 className={title}>Страница регистрации</h1>
 
         <form onSubmit={this.handleSubmit} className={form} autoComplete="off">
           <label className={label}>
             Имя
             <input
+              className={inputs}
               type="text"
               name="name"
               value={name}
@@ -44,6 +53,7 @@ class RegisterView extends Component {
           <label className={label}>
             Почта
             <input
+              className={inputs}
               type="email"
               name="email"
               value={email}
@@ -54,6 +64,7 @@ class RegisterView extends Component {
           <label className={label}>
             Пароль
             <input
+              className={inputs}
               type="password"
               name="password"
               value={password}
@@ -61,7 +72,9 @@ class RegisterView extends Component {
             />
           </label>
 
-          <button type="submit">Зарегистрироваться</button>
+          <button className={button} type="submit">
+            Зарегистрироваться
+          </button>
         </form>
       </div>
     );
